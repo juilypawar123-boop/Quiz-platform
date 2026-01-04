@@ -1,0 +1,133 @@
+.App {
+    text-align: center;
+    min-height: 100vh;
+    background-image: url("./assets/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:  center;
+    color: #fff;
+    padding-top: 20px;
+}
+
+/* Remove CRA default header styling influence */
+.App-header {
+    background: transparent;
+    min-height: unset;
+    font-size: calc(10px + 1.5vmin);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Quiz container */
+.quiz-container {
+    width: 60%;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 25px;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+    /* Question text */
+    .quiz-container h3 {
+        font-size: 23px;
+        margin-bottom: 17px;
+        color: #4caf50;
+    }
+
+/* Options styling */
+.option {
+    display: block;
+    background-color: #ffffff;
+    color: #333;
+    font-size: 20px;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+    .option input {
+        margin-right: 10px;
+        transform: scale(1.2);
+    }
+
+    .option:hover {
+        background-color: #f2f2f2;
+    }
+
+    /* Selected option */
+    .option.selected {
+        border-color: #4caf50;
+        background-color: #e8f5e9;
+        font-weight: 600;
+    }
+
+/* Timer bar */
+.timer-bar {
+    background: #ddd;
+    height: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.timer-fill {
+    height: 100%;
+    transition: width 1s linear;
+}
+
+.timer {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.timer-safe {
+    color: #4caf50; /* green */
+}
+
+.timer-danger {
+    color: #f44336; /* red */
+}
+
+/* Buttons */
+button {
+    background-color: #0026ff;
+    color: white;
+    font-size: 16px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+    button:hover {
+        background-color: #43a047;
+    }
+
+/* Remove CRA logo animation noise */
+.App-logo {
+    display: none;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .quiz-container {
+        width: 90%;
+    }
+
+    .option {
+        font-size: 16px;
+    }
+}
