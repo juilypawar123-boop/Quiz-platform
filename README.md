@@ -2,7 +2,8 @@
 
 A full-stack quiz application built with **React** (frontend), **Node.js + Express** (backend), and **MongoDB**. Users can enter their name, take timed quizzes, submit answers, and view a leaderboard of top scores.  
 
-> Developed as part of my internship project in compliance automation and AI-based reporting systems.
+>** Developed as part of my internship project in compliance automation and AI-based reporting systems.**
+
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
