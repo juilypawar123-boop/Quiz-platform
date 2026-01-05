@@ -6,20 +6,23 @@ const Quiz = ({ onFinish }) => {
     const [started, setStarted] = useState(false);
     const [questions, setQuestions] = useState([]);
     const [answers, setAnswers] = useState({});
-    const [timeLeft, setTimeLeft] = useState(60); // seconds
+    const [timeLeft, setTimeLeft] = useState(60);
     const [submitted, setSubmitted] = useState(false);
     const [score, setScore] = useState(null);
     const QUIZ_TIME = 60;
+
+    // Backend URL
+    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
 
     // Fetch questions when quiz starts
     useEffect(() => {
         if (started) {
             axios
-                .get("/questions") // Proxy handles localhost:5000
+                .get(`${BACKEND_URL}/questions`)
                 .then((res) => setQuestions(res.data))
-                .catch((err) => console.error("Error fetching questions:", err));
+                .catch((err) => console.error("AxiosError", err));
         }
-    }, [started]);
+    }, [started, BACKEND_URL]);
 
     // Submit quiz
     const submitQuiz = useCallback(() => {
@@ -31,7 +34,7 @@ const Quiz = ({ onFinish }) => {
         }));
 
         axios
-            .post("/submit", {
+            .post(`${BACKEND_URL}/submit`, {
                 username: username || "Anonymous",
                 answers: formattedAnswers,
             })
@@ -39,10 +42,10 @@ const Quiz = ({ onFinish }) => {
                 setScore(res.data.score);
                 setSubmitted(true);
             })
-            .catch((err) => console.error("Error submitting quiz:", err));
-    }, [answers, username, submitted]);
+            .catch((err) => console.error("AxiosError", err));
+    }, [answers, username, submitted, BACKEND_URL]); 
 
-    // Timer
+    // Countdown timer
     useEffect(() => {
         if (!started || submitted) return;
 
@@ -55,6 +58,7 @@ const Quiz = ({ onFinish }) => {
         return () => clearInterval(timer);
     }, [timeLeft, started, submitted, submitQuiz]);
 
+    // Handle answer selection
     const handleChange = (questionId, option) => {
         if (submitted) return;
         setAnswers((prev) => ({ ...prev, [questionId]: option }));
